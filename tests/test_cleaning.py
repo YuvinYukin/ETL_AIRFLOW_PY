@@ -1,5 +1,6 @@
 from etl.cleaning import clean_amount
 
+
 def test_plain_number():
     assert clean_amount("100") == 100.0
 
