@@ -3,6 +3,9 @@ def clean_amount(value: str) -> float:
     if value is None or value.strip() == "":
         return 0.0
     v = value.strip().replace(",", "")
-    if v.startswith("(") and v.endswith(")"):   # accounting negative
-        return -float(v[1:-1])
-    return float(v)
+    try:
+        if v.startswith("(") and v.endswith(")"):   # accounting negative
+            return -float(v[1:-1])
+        return float(v)
+    except ValueError:
+        raise ValueError(f"Invalid amount: {value!r}") from None
